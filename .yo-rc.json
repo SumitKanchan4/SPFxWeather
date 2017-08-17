@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "weather",
+    "framework": "react",
+    "version": "1.0.2",
+    "libraryId": "b1a24424-2059-4e0e-a423-60ff244c8d9a"
+  }
+}

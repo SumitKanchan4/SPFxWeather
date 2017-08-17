@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "cc31d276-87e0-4b60-ae67-f5d9593d6af8",
+  "alias": "WeatherWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "f5b23167-8553-48a3-8b83-cda1b179d64d",
+    "group": { "default": "SPFx by Sumit Kanchan" },
+    "title": { "default": "Weather" },
+    "description": { "default": "Displays Weather on your SharePoint site." },
+    "officeFabricIconFontName": "PartlyCloudyDay",
+    "properties": {
+      "description": "Weather"
+    }
+  }]
+}
