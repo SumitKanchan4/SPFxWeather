@@ -4,14 +4,14 @@ import { IWeatherProps } from './IWeatherProps';
 import { WeatherHelper } from '../../../Helper/WeatherHelper';
 import { WeatherCondition, WeatherInfoProps, UnitInfo } from '../../../Entity/WeatherInfoProps';
 
-export default class Weather extends React.Component<IWeatherProps, { dummyData: any }> {
+export default class Weather extends React.Component<IWeatherProps, { weatherInfo: WeatherInfoProps }> {
 
   constructor(props: IWeatherProps) {
     super(props);
 
     this.state = {
-      dummyData: undefined
-    }
+      weatherInfo: undefined
+    };
   }
 
   public render(): React.ReactElement<IWeatherProps> {
@@ -19,26 +19,56 @@ export default class Weather extends React.Component<IWeatherProps, { dummyData:
       <div>
         <div className={styles.weather}>
           <div className={styles.container}>
-            {this.state.dummyData}
+            {
+              this.state.weatherInfo == undefined ?
+                <div>
+                  <div className={`ms-Grid`}>
+                    <div className={`ms-Grid-row ${styles.header}`} >
+                      <div className={`ms-Grid-col ms-u-sm6`}>
+                        Agra, UP, India
+                      </div>
+                      <div className={`ms-Grid-col ms-u-sm6`}>
+                        24 &deg;C
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`ms-Grid`}>
+                    <div className={`ms-Grid-row`} >
+                      <div className={`ms-Grid-col ms-sm12 ${styles.header}`}>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                :
+                <div className={`ms-Grid`}>
+                  <div className={`ms-Grid-row`} >
+                    <div className={`ms-Grid-col col-sm12`}>
+                      Getting Information from Yahoo!
+                    </div>
+                  </div>
+                </div>
+            }
+
           </div>
         </div>
+
       </div>
     );
   }
 
   public componentWillMount(): void {
-    this.getWeatherDetails(this.props);
+    //this.getWeatherDetails(this.props);
   }
 
   public componentWillReceiveProps(nextProps: IWeatherProps, nextContext: any): void {
-    this.getWeatherDetails(nextProps);
+    //this.getWeatherDetails(nextProps);
   }
 
   private getWeatherDetails(props: IWeatherProps): void {
     let oHelper: WeatherHelper = new WeatherHelper();
-    this.setState({ dummyData: `Getting weather details` });
+    //this.setState({dummyData: `Getting weather details` });
     oHelper.executeWeatherQuery(this.props.location, this.props.unit).then(weatherResp => {
-
+      //http://l.yimg.com/a/i/us/we/52/" + objAttribute.Value + ".gif"
       let weatherInfo: WeatherInfoProps = {
         title: weatherResp.title,
         city: weatherResp.location.city,
@@ -63,7 +93,7 @@ export default class Weather extends React.Component<IWeatherProps, { dummyData:
         temperature: weatherResp.units.temperature
       }
 
-      this.setState({ dummyData: JSON.stringify(weatherInfo) });
+      this.setState({ weatherInfo: weatherInfo });
     });
   }
 
