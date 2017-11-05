@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <table width="100%">
-                        <tr>
+                        <tr> 
                             <td class="topRow">
                                 <asp:Label ID="Day" runat="server"></asp:Label>
                             </td>
@@ -38,9 +38,11 @@
                         </tr>	
                     </table>
                 </td>
+
                 <td class="pad">
                     <asp:Image runat="server" Visible="false" ID="imgCond" CssClass="shdw" />
                 </td>
+
                 <td>
                     <table width="100%">
                         <tr>
@@ -55,6 +57,8 @@
                         </tr>
                     </table>
                 </td>
+
+                // High temperature
                 <td>
                     <table width="100%">
                         <tr>
@@ -69,6 +73,8 @@
                         </tr>
                     </table>
                 </td>
+
+                //Low Temperature
                 <td>
                     <table width="100%">
                         <tr>
@@ -83,6 +89,8 @@
                         </tr>
                     </table>
                 </td>
+                
+                // HUmidity
                 <td>
                     <table width="100%">
                         <tr>
@@ -97,6 +105,8 @@
                         </tr>
                     </table>
                 </td>
+
+                //Wind
                 <td>
                     <table width="100%">
                         <tr>
@@ -199,3 +209,20 @@
         font-size:xx-small !Improtant;
     }
 </style>
+
+
+                          <div className={`ms-Grid-col ms-u-sm3`}>
+                            <div className={`ms-Grid`}>
+                              <div className={`ms-Grid-row ${styles.topRow}`} >
+                                <div className={`ms-Grid-col ms-u-sm12`}>
+                                  Today
+                                </div>
+                              </div>
+                              <div className={`ms-Grid-row ${styles.bottomRow}`} >
+                                <div className={`ms-Grid-col ms-u-sm12`}>
+                                  10 June
+                            </div>
+                              </div>
+                            </div>
+
+                          </div>
