@@ -72,6 +72,10 @@
     }
     .pwrdBy img{
         display: inline-block !important;
-        width: 20px !important;
+        width: 18px !important;
+        padding-left: 5px;
+    }
+    .pwrdBy span{
+        font-size:xx-small !important;
     }
 }

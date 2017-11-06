@@ -6,7 +6,8 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
   PropertyPaneToggle,
-  PropertyPaneDropdown
+  PropertyPaneDropdown,
+  PropertyPaneSlider
 } from '@microsoft/sp-webpart-base';
 import Weather from './components/Weather';
 import { IWeatherProps } from './components/IWeatherProps';
@@ -27,10 +28,12 @@ export default class WeatherWebPart extends BaseClientSideWebPart<IWeatherWebPar
         showHumidity: this.properties.showHumidity,
         showWind: this.properties.showWind,
         showLastUpdated: this.properties.showLastUpdated,
-        showCurrentLocation: this.properties.showCurrentLocation
+        showCurrentLocation: this.properties.showCurrentLocation,
+        forecastLength: this.properties.forecastLength,
+        showTodayInfo: this.properties.forecastLength > 0 || this.properties.showTodayInfo
       }
     );
-
+    this.getCurrentLocation();
     ReactDom.render(element, this.domElement);
   }
 
@@ -40,6 +43,11 @@ export default class WeatherWebPart extends BaseClientSideWebPart<IWeatherWebPar
 
   private showLocation(position: any): void {
     alert(position.coords.latitude);
+  }
+  private getCurrentLocation(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showLocation);
+    }
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -54,10 +62,11 @@ export default class WeatherWebPart extends BaseClientSideWebPart<IWeatherWebPar
               groupName: 'Basic Configuration',
               groupFields: [
                 PropertyPaneToggle('showCurrentLocation', {
-                  checked: true,
+                  checked: false,
                   offText: 'Enable to show weather of user location',
                   onText: 'Disable to hide weather of user location',
-                  label: 'Use user location'
+                  label: 'Use user location',
+                  disabled: true
                 }),
                 PropertyPaneTextField('location', {
                   label: this.properties.showCurrentLocation ? 'Enter the default location' : 'Enter location'
@@ -65,65 +74,29 @@ export default class WeatherWebPart extends BaseClientSideWebPart<IWeatherWebPar
                 PropertyPaneDropdown('unit', {
                   label: 'Select temperature unit',
                   options: [
-                    { key: 'Celcius', text: 'Celcius' },
-                    { key: 'Farenhite', text: 'Farenhite' }
+                    { key: 'C', text: 'Celcius' },
+                    { key: 'F', text: 'Farenhite' }
                   ],
-                  selectedKey: 'Celcius'
-                })
-              ]
-            }
-          ]
-        },
-        {
-          header: {
-            description: 'Choose what all information needs to be displayed'
-          },
-          groups: [
-            {
-              groupName: 'Advance Configuration',
-              groupFields: [
-                PropertyPaneToggle('showCondition', {
-                  checked: false,
-                  offText: 'Enable to show Condition',
-                  onText: 'Disable to hide Condition',
-                  label: 'Condition'
+                  selectedKey: 'C'
                 }),
-                PropertyPaneToggle('showConditionImage', {
-                  checked: false,
-                  offText: 'Enable to show Condition Image',
-                  onText: 'Disable to hide Condition Image',
-                  label: 'Condition Image'
-                }),
-                PropertyPaneToggle('showHigh', {
-                  checked: false,
-                  offText: 'Enable to show High Temperature',
-                  onText: 'Disable to hide High Temperature',
-                  label: 'High Temprature'
-                }),
-                PropertyPaneToggle('showLow', {
-                  checked: false,
-                  offText: 'Enable to show Low Temperature',
-                  onText: 'Disable to hide Low Temperature',
-                  label: 'Low Temperature'
-                }),
-                PropertyPaneToggle('showHumidity', {
-                  checked: false,
-                  offText: 'Enable to show Humidity',
-                  onText: 'Disable to hide Humidity',
-                  label: 'Humidity'
-                }),
-                PropertyPaneToggle('showWind', {
-                  checked: false,
-                  key: 'showChecked',
-                  offText: 'Enable to show Wind',
-                  onText: 'Disable to hide Wind',
-                  label: 'Wind'
+                PropertyPaneSlider('forecastLength', {
+                  min: 0,
+                  max: 9,
+                  ariaLabel: 'Select the number of days need to be shown in the forecast',
+                  label: 'Select the number of days need to be shown in the forecast',
+                  value: 0
                 }),
                 PropertyPaneToggle('showLastUpdated', {
                   checked: false,
-                  offText: 'Enable to show Last Updated (updates every hour)',
+                  offText: 'Enable to show Last Updated',
                   onText: 'Disable to hide Last Updated',
                   label: 'Last Updated'
+                }),
+                PropertyPaneToggle('showTodayInfo', {
+                  checked: true,
+                  offText: 'Enable to show detail Info of today weather',
+                  onText: 'Disable to hide  detail Info of today weather',
+                  label: 'Dsiplay today weather information'
                 })
               ]
             }

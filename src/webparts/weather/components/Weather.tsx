@@ -32,17 +32,23 @@ export default class Weather extends React.Component<IWeatherProps, { weatherInf
                       <div className={`ms-Grid`}>
 
                         {/* Last Updated */}
-                        <div className={`ms-Grid-row ${styles.lstupd} ${styles.clr}`} >
-                          <div className={`ms-Grid-col ms-u-sm12`}>
-                            Last Updated: {this.state.weatherInfo.lastUpdated}
-                          </div>
-                        </div>
+                        {
+                          this.props.showLastUpdated ?
+                            <div className={`ms-Grid-row ${styles.lstupd} ${styles.clr}`} >
+                              <div className={`ms-Grid-col ms-u-sm12`}>
+                                Last Updated: {this.state.weatherInfo.lastUpdated}
+                              </div>
+                            </div>
+                            :
+                            <div></div>
+                        }
 
                         {/* Header */}
                         <div className={`ms-Grid-row ${styles.header} ${styles.clr}`} >
                           <div className={`ms-Grid-col ms-u-sm10`}>
                             {this.state.weatherInfo.city}, {this.state.weatherInfo.region}, {this.state.weatherInfo.country}
                           </div>
+
                           <div className={`ms-Grid-col ms-u-sm2`}>
                             {this.state.weatherInfo.currentTemp}&deg;{this.state.units.temperature}
                           </div>
@@ -52,66 +58,71 @@ export default class Weather extends React.Component<IWeatherProps, { weatherInf
                   </div>
 
                   {/* Show all info */}
-                  <div className={`ms-Grid-row`} >
-                    <div className={`ms-Grid-col  ms-u-sm12`}>
+                  {
+                    this.props.showTodayInfo ?
+                      <div className={`ms-Grid-row ${styles.seperator}`} >
+                        <div className={`ms-Grid-col  ms-u-sm12`}>
 
-                      <div className={`ms-Grid ${styles.seperator}`}>
-                        <div className={`ms-Grid-row`} >
+                          <div className={`ms-Grid`}>
+                            <div className={`ms-Grid-row`} >
 
-                          <div className={`ms-Grid-col ms-u-md2`}>
-                            <Image src={this.state.weatherInfo.condition[0].code} role={`presentation`} />
-                          </div>
+                              <div className={`ms-Grid-col ms-u-md2`}>
+                                <Image src={this.state.weatherInfo.currentCode} role={`presentation`} />
+                              </div>
 
-                          <div className={`ms-Grid-col ms-u-md2 ms-u-sm4`}>
-                            <div className={`ms-Grid`}>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  High: {this.state.weatherInfo.condition[0].high}
+                              <div className={`ms-Grid-col ms-u-md2 ms-u-sm4`}>
+                                <div className={`ms-Grid`}>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      High: {this.state.weatherInfo.currentHigh}&deg;{this.state.units.temperature}
+                                    </div>
+                                  </div>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      Low: {this.state.weatherInfo.currentLow}&deg;{this.state.units.temperature}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  Low: {this.state.weatherInfo.condition[0].low}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
-                          <div className={`ms-Grid-col ms-u-md4 ms-u-sm4`}>
-                            <div className={`ms-Grid`}>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  Wind: {this.state.weatherInfo.windSpeed} {this.state.units.speed}
+                              <div className={`ms-Grid-col ms-u-md4 ms-u-sm4`}>
+                                <div className={`ms-Grid`}>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      Wind: {this.state.weatherInfo.windSpeed} {this.state.units.speed}
+                                    </div>
+                                  </div>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      Humidity: {this.state.weatherInfo.humidity}%
+                                </div>
+                                  </div>
                                 </div>
                               </div>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  Humidity: {this.state.weatherInfo.humidity}%
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
-                          <div className={`ms-Grid-col ms-u-md4 ms-u-hiddenMdDown`}>
-                            <div className={`ms-Grid`}>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  Sunrise: {this.state.weatherInfo.sunrise}
+                              <div className={`ms-Grid-col ms-u-md4 ms-u-hiddenMdDown`}>
+                                <div className={`ms-Grid`}>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      Sunrise: {this.state.weatherInfo.sunrise}
+                                    </div>
+                                  </div>
+                                  <div className={`ms-Grid-row ${styles.topRow}`} >
+                                    <div className={`ms-Grid-col ms-u-sm12`}>
+                                      Sunset: {this.state.weatherInfo.sunset}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                              <div className={`ms-Grid-row ${styles.topRow}`} >
-                                <div className={`ms-Grid-col ms-u-sm12`}>
-                                  Sunset: {this.state.weatherInfo.sunset}
-                                </div>
-                              </div>
+
                             </div>
                           </div>
 
                         </div>
                       </div>
-
-                    </div>
-                  </div>
+                      :
+                      <div></div>
+                  }
 
                   {/* show forecast */}
                   <div className={`ms-Grid-row ${styles.seperator}`}>
@@ -166,12 +177,6 @@ export default class Weather extends React.Component<IWeatherProps, { weatherInf
                     </div>
                   </div>
 
-                  {/* Powered by Yahoo */}
-                  <div className={`ms-Grid-row ${styles.lstupd} ${styles.clr}`}>
-                    <div className={`ms-Grid-col ms-u-sm12`}>
-                      <span>Powered by </span><Image src={`https://cdn3.iconfinder.com/data/icons/social-network-round-gloss-shine/512/Yahoo_Social-Network-Communicate-Page-Curl-Effect-Circle-Glossy-Shadow-Shine.png`} className={styles.pwrdBy} />
-                    </div>
-                  </div>
                 </div>
                 :
                 <div className={`ms-Grid`}>
@@ -195,57 +200,77 @@ export default class Weather extends React.Component<IWeatherProps, { weatherInf
   }
 
   public componentWillReceiveProps(nextProps: IWeatherProps, nextContext: any): void {
+
+    if (typeof (Storage) != undefined && (this.props.location != nextProps.location || this.props.unit != nextProps.unit)) {
+      localStorage.removeItem('SPFxWeatherInfo');
+    }
+
     this.getWeatherDetails(nextProps);
   }
 
   private getWeatherDetails(props: IWeatherProps): void {
 
-    if (props.location != undefined) {
+    if (!WeatherHelper.isStringNullOrEmpty(props.location)) {
 
-      let oHelper: WeatherHelper = new WeatherHelper();
-      oHelper.executeWeatherQuery(this.props.location, this.props.unit).then(weatherResp => {
+      if (!this.getWeatherInfoFromLocalStorage(props)) {
+        let oHelper: WeatherHelper = new WeatherHelper();
+        oHelper.executeWeatherQuery(props.location, props.unit).then(weatherResp => {
 
-        if (weatherResp != undefined && weatherResp != null) {
-          let weatherInfo: WeatherInfoProps = {
-            title: weatherResp.title,
-            city: weatherResp.location.city,
-            country: weatherResp.location.country,
-            region: weatherResp.location.region,
-            description: '',
-            humidity: weatherResp.atmosphere.humidity,
-            visibility: weatherResp.atmosphere.visibility,
-            sunrise: weatherResp.astronomy.sunrise,
-            sunset: weatherResp.astronomy.sunset,
-            currentTemp: weatherResp.item.condition.temp,
-            windSpeed: weatherResp.wind.speed,
-            lastUpdated: weatherResp.lastBuildDate,
-            windDirection: weatherResp.wind.direction,
-            condition: this.getAllDaysWeather(weatherResp)
+          if (weatherResp != undefined && weatherResp != null) {
+
+            let unitsInfo: UnitInfo = {
+              distance: weatherResp.units.distance,
+              pressure: weatherResp.units.pressure,
+              speed: weatherResp.units.speed,
+              temperature: weatherResp.units.temperature
+            };
+
+            let weatherInfo: WeatherInfoProps = {
+              title: weatherResp.title,
+              city: weatherResp.location.city,
+              country: weatherResp.location.country,
+              region: weatherResp.location.region,
+              description: '',
+              humidity: weatherResp.atmosphere.humidity,
+              visibility: weatherResp.atmosphere.visibility,
+              sunrise: weatherResp.astronomy.sunrise,
+              sunset: weatherResp.astronomy.sunset,
+              currentTemp: weatherResp.item.condition.temp,
+              windSpeed: weatherResp.wind.speed,
+              lastUpdated: weatherResp.lastBuildDate,
+              windDirection: weatherResp.wind.direction,
+              condition: this.getAllDaysWeather(weatherResp),
+              currentHigh: '',
+              currentLow: '',
+              currentCode: ''
+            };
+
+            let weatherToday: WeatherCondition[] = weatherInfo.condition.splice(0, 1);
+            weatherInfo.currentHigh = weatherToday[0].high;
+            weatherInfo.currentLow = weatherToday[0].low;
+            weatherInfo.currentCode = weatherToday[0].code;
+
+            this.setWeatherInfoToLocalStorage(weatherInfo, unitsInfo);
+            weatherInfo.condition.splice(props.forecastLength, (weatherInfo.condition.length - props.forecastLength));
+
+            this.setState({ weatherInfo: weatherInfo, units: unitsInfo });
           }
-
-          let unitsInfo: UnitInfo = {
-            distance: weatherResp.units.distance,
-            pressure: weatherResp.units.pressure,
-            speed: weatherResp.units.speed,
-            temperature: weatherResp.units.temperature
+          else {
+            this.setState({ status: `Cannot get weather for location: ${props.location}` });
           }
-
-          this.setState({ weatherInfo: weatherInfo, units: unitsInfo });
-        }
-        else {
-          this.setState({ status: `Cannot get weather for location: ${props.location}` });
-        }
-      });
+        });
+      }
     }
     else {
-      this.setState({ status: `Webpart not configured...` });
+      this.setState({ weatherInfo: undefined, units: undefined, status: `Webpart not configured...` });
     }
   }
 
   private getAllDaysWeather(weatherResp: any): WeatherCondition[] {
 
     let weatherConditions: WeatherCondition[] = [];
-    weatherResp.item.forecast.forEach(item => {
+    weatherResp.item.forecast.forEach((item, index) => {
+
       weatherConditions.push({
         code: `http://l.yimg.com/a/i/us/we/52/${item.code}.gif `,
         date: item.date,
@@ -259,11 +284,52 @@ export default class Weather extends React.Component<IWeatherProps, { weatherInf
     return weatherConditions;
   }
 
-  private setGeoLocation(position: any): void {
+  private setWeatherInfoToLocalStorage(weatherInfo: WeatherInfoProps, unitsInfo: UnitInfo): void {
 
-    if (typeof (Storage) != undefined && localStorage.getItem('SPFxWeatherLocationLattitude') != undefined) {
-      localStorage.setItem('SPFxWeatherLocationLattitude', position.coords.latitude);
-      localStorage.setItem('SPFxWeatherLocationLongitude', position.coords.longitude);
+    if (typeof (Storage) != undefined) {
+      let expiration: Date = new Date();
+      expiration.setMinutes(expiration.getMinutes() + 30);  // Save to local storage for a time period of 30 minutes
+      localStorage.setItem('SPFxWeatherInfo', JSON.stringify({ weather: weatherInfo, unit: unitsInfo, expire: expiration }));
     }
   }
+
+  private getWeatherInfoFromLocalStorage(props: IWeatherProps): boolean {
+
+    let gotValue: boolean = false;
+    if (typeof (Storage) != undefined && localStorage.getItem('SPFxWeatherInfo') != undefined && localStorage.getItem('SPFxWeatherInfo') != null) {
+
+      let duration: any = (new Date(JSON.parse(localStorage.getItem("SPFxWeatherInfo")).expire)).valueOf() - (new Date()).valueOf();
+
+      if (duration >= 0) {
+        let weather: WeatherInfoProps = JSON.parse(localStorage.getItem("SPFxWeatherInfo")).weather;
+        weather.condition.splice(props.forecastLength, (weather.condition.length - props.forecastLength));
+        this.setState({ weatherInfo: weather, units: JSON.parse(localStorage.getItem("SPFxWeatherInfo")).unit });
+        gotValue = true;
+      }
+      else {
+        gotValue = false;
+      }
+    }
+    else {
+      gotValue = false;
+    }
+
+    return gotValue;
+  }
+
+  // private setGeoLocation(position: any): void {
+
+  //   alert(position.coords.latitude)
+  //   // if (typeof (Storage) != undefined && localStorage.getItem('SPFxWeatherLocationLattitude') != undefined) {
+  //   //   localStorage.setItem('SPFxWeatherLocationLattitude', position.coords.latitude);
+  //   //   localStorage.setItem('SPFxWeatherLocationLongitude', position.coords.longitude);
+  //   // }
+  // }
+
+  // private getCurrentLocation(): void {
+  //   if (navigator.geolocation) {
+  //     alert('1');
+  //     navigator.geolocation.getCurrentPosition(this.setGeoLocation);
+  //   }
+  // }
 }

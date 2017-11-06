@@ -14,7 +14,8 @@
     "description": { "default": "Displays Weather on your SharePoint site." },
     "officeFabricIconFontName": "PartlyCloudyDay",
     "properties": {
-      "description": "Weather"
+      "unit": "C",
+      "showTodayInfo": true
     }
   }]
 }

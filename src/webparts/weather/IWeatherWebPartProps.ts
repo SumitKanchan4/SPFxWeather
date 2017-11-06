@@ -9,4 +9,6 @@ export interface IWeatherWebPartProps {
   showWind: boolean;
   showLastUpdated: boolean;
   showCurrentLocation:boolean;
+  forecastLength:number;
+  showTodayInfo:boolean;
 }
