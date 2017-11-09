@@ -21,34 +21,19 @@ export default class WeatherWebPart extends BaseClientSideWebPart<IWeatherWebPar
       {
         location: this.properties.location,
         unit: this.properties.unit,
-        showCondition: this.properties.showCondition,
-        showConditionImage: this.properties.showConditionImage,
-        showHigh: this.properties.showHigh,
-        showLow: this.properties.showLow,
-        showHumidity: this.properties.showHumidity,
-        showWind: this.properties.showWind,
         showLastUpdated: this.properties.showLastUpdated,
         showCurrentLocation: this.properties.showCurrentLocation,
-        forecastLength: this.properties.forecastLength,
+        forecastLength: this.properties.forecastLength == undefined ? 0 : this.properties.forecastLength,
         showTodayInfo: this.properties.forecastLength > 0 || this.properties.showTodayInfo
       }
     );
-    this.getCurrentLocation();
+   
     ReactDom.render(element, this.domElement);
   }
 
   protected get dataVersion(): Version {
     return Version.parse('1.0');
-  }
-
-  private showLocation(position: any): void {
-    alert(position.coords.latitude);
-  }
-  private getCurrentLocation(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showLocation);
-    }
-  }
+  } 
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
