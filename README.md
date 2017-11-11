@@ -40,9 +40,11 @@ For deployment follow the below steps
   - Change the 'cdnBasePath' url inside the Config/write-manifest.json
   - Create the package
     - Run the following commands
-    - gulp
-    - gulp serve --nobrowser
-    - gulp package-solution --ship
+    ```sh
+    gulp
+    gulp serve --nobrowser
+    gulp package-solution --ship
+    ```
     - Now upload the weather.sppkg file from sharepoint/solution folder
     - Upload the files inside temp/deploy to the cdnBasePath url
 - Now add the webpart to the page
