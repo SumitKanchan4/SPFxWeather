@@ -1,14 +1,16 @@
 # SharePoint Framework Weather WebPart
 
+[![SharePoint Framework Helper](/Images/SP.png?raw=true "SharePoint Framework Helper" )](http://sharepointwidgets.blogspot.com)
+
 Hi Friends,
 
-I have come up with a weather webpart, to let you know about the weather outside event when you are working inside. Weather webpart is the most common webpart many of the user love to have them on their site.
+I have come up with a weather webpart, to let you know about the weather outside even when you are working inside. Weather webpart is the most common webpart many of the user love to have them on their site.
 
 So, I have created a weather webpart which fetches its data from yahoo and displays in a very beautiful format.
 
 ![SharePoint Framework Weather Webpart](/Images/WeatherMain.png?raw=true "WebPart Home")
 
-## WebPart Features!
+## WebPart Features!!
 Weather webpart displays the following information
   - High Temperature
   - Low Temperature
@@ -20,8 +22,6 @@ Weather webpart displays the following information
   - Forecast for upto 10 days
   - Day and date display for easy readability
   
-![Webpart Settings](/Images/Webpart-settings.png?raw=true "WebPart Settings") 
-  
 
 ### You can configure the webpart with just few clicks
   - Enter any City name and see the results right away
@@ -29,6 +29,8 @@ Weather webpart displays the following information
   - Select how many days to be displayed in the forecast. Easy to use slider to select the days
   - Show the information when the information was last updated
   - Option to display only the header with the temperature information - compact and informative.
+  
+  ![Webpart Settings](/Images/Webpart-settings.png?raw=true "WebPart Settings") 
 
 ## Deployment
 
