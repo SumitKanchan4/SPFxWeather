@@ -47,7 +47,7 @@ For deployment follow the below steps
   
 >Since I am using the Yahoo API which has restricted to the number of hits per day, so by default new data will be processed after 30 minutes (does not auto refresh but, gets data if the last updated is more that 30 min and page is refreshed manually). If you are having more than that please get the yahoo key and need to make changes in the query. 
 
-Do comment ![here](http://sharepointwidgets.blogspot.com/2017/11/sharepoint-framework-weather-webpart.html) on how you feel about the webpart and if there is anymore functionality that is missed and you would like to have.
+Do comment [here](http://sharepointwidgets.blogspot.com/2017/11/sharepoint-framework-weather-webpart.html) on how you feel about the webpart and if there is anymore functionality that is missed and you would like to have.
 
 Happy Coding  
 
